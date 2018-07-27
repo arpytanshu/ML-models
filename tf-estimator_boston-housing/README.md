@@ -1,8 +1,9 @@
 
-# DATASET
-Boston Housing
+##### DATASET
+###### Boston Housing
 500 samples
 450:50 :: train:test split
 
-# Model
+##### Model
 tf estimator DNNRegressor
+50 hiddden units
