@@ -1,23 +1,18 @@
 
+### ODEL
+DEEP NEURAL NETWROK
+Architecture:
+imput   : 9
+hidden_1:  36
+hidden_1:  36
+output  :  2
 
-Layer (type)                 Output Shape              Param  
-=================================================================
-dense_3 (Dense)              (None, 36)                360       
-_________________________________________________________________
-dropout_2 (Dropout)          (None, 36)                0         
-_________________________________________________________________
-dense_4 (Dense)              (None, 36)                1332      
-_________________________________________________________________
-dropout_3 (Dropout)          (None, 36)                0         
-_________________________________________________________________
-dense_5 (Dense)              (None, 2)                 74        
-=================================================================
-Total params: 1,766
-Trainable params: 1,766
-Non-trainable params: 0
-_________________________________________________________________
-Saved file: titanic_preds_accu:0.9102_loss:0.2335.csv
-
+### Performance Stats
+train accuracy  : 0.9102
+train loss      : 0.2335.csv
+test Accuracy   : 0.74~0.77
 
 
 ![alt text](https://github.com/arpytanshu/ML-models/blob/master/TITANIC/Screenshot%20from%202018-11-03%2013-07-37.png)
+
+
