@@ -1,6 +1,6 @@
 
-### ODEL
-DEEP NEURAL NETWROK
+### MODEL
+DEEP NEURAL NETWORK
 Architecture:
 * input   : 9
 * hidden_1:  36
