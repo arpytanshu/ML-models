@@ -51,7 +51,7 @@ for i, sentence in enumerate(sentences):
         x[i, t, char_index[char]] = 1
     y[i, char_index[next_chars[i]]] = 1
     
-
+# build model
 from tensorflow.keras import Sequential
 from tensorflow.keras.layers import LSTM, Dense, Activation
 from tensorflow.keras.optimizers import RMSprop
@@ -74,7 +74,7 @@ def sample(preds, temperature = 1.0):
     return np.argmax(probas)
 
 
-
+# define callback
 def on_epoch_end(epoch, logs):
     
     tempstr = '==== Generating Text after Epoch: ' + str(epoch) + ' ====\n'
@@ -113,31 +113,10 @@ def on_epoch_end(epoch, logs):
         
 print_callback = keras.callbacks.LambdaCallback(on_epoch_end=on_epoch_end)
 
+# fit
 model.fit(x, y,
           batch_size = 256,
           epochs = 60,
           callbacks=[print_callback])
             
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     
