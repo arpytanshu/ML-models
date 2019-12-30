@@ -1,3 +1,7 @@
+This script uses advanced technology to . . . reverse a string ! 
+:p
+
+
 A Sequence to Sequence LSTM model that learns to reverse a string.
 Very Fancy!!
 
