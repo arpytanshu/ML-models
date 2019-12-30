@@ -31,7 +31,7 @@ DATA_TYPE = 'illustrative_reverse' # could be 'copy' or 'reverse'
 DATA_SIZE = 10000
 MAXLEN_SEQ = 15
 MINLEN_SEQ = 5
-log_file = './objects/log.txt'
+log_file = './objects/log_big.txt'
 
 
 
@@ -292,23 +292,27 @@ log_("Total train time: {} seconds\n".format(total_time))
 SAVE MODEL
 '''
     
-log_('Saving models to ./objects/*_small.h5\n')
+log_('Saving models to ./objects/*_big.h5\n')
 
-train_model.save('./objects/train_model_small.h5')
-inf_encoder_model.save('./objects/inf_encoder_small.h5')
-inf_decoder_model.save('./objects/inf_decoder_small.h5')
+train_model.save('./objects/train_model_big.h5')
+inf_encoder_model.save('./objects/inf_encoder_big.h5')
+inf_decoder_model.save('./objects/inf_decoder_big.h5')
 
 log_('Saving train history to ./objects/history.pickle\n')
-with open('./objects/history_small.pickle', 'wb') as f:
+with open('./objects/history_big.pickle', 'wb') as f:
   pickle.dump(history, f)
 
 character_mapping = {
     'source_index_token': source_index_token,
-    'target_index_token': target_index_token,    
+    'target_index_token': target_index_token,
+    'num_source_tokens' : num_source_tokens,
+    'num_target_tokens' : num_target_tokens,
+    'max_source_seq_len' : max_source_seq_len,
+    'max_target_seq_len' : max_target_seq_len,
     }
-log_('Saving character mapping dictionaries to ./objects/char_map_small.pickle\n')
-with open('./objects/char_map_small.pickle', 'wb') as f:
+    
+log_('Saving character mapping dictionaries to ./objects/char_map_big.pickle\n')
+with open('./objects/char_map_big.pickle', 'wb') as f:
   pickle.dump(character_mapping, f)
 
 log_('Finished.')
-

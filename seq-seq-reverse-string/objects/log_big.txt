@@ -1,0 +1,341 @@
+2019-12-30 09:36:16,948 - Logging Started
+2019-12-30 09:36:16,948 - Generating data using python3 ./generate_toy_data.py --type illustrative_reverse --num_examples 10000     --max_len 15 --min_len 5 --output_dir ./data/
+2019-12-30 09:36:17,974 - NumExpr defaulting to 2 threads.
+2019-12-30 09:36:35,440 - Logging Started
+2019-12-30 09:36:35,441 - Generating data using python3 ./generate_toy_data.py --type illustrative_reverse --num_examples 10000     --max_len 15 --min_len 5 --output_dir ./data/
+2019-12-30 09:36:36,240 - Number of tokens in source text: 27
+2019-12-30 09:36:36,240 - Number of tokens in target text: 28
+2019-12-30 09:36:36,240 - Maximum sequence length in source text: 16
+2019-12-30 09:36:36,241 - Maximum sequence length in target text: 17
+2019-12-30 09:36:36,431 - From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:541: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+2019-12-30 09:36:36,448 - From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:66: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+2019-12-30 09:36:36,450 - From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:4432: The name tf.random_uniform is deprecated. Please use tf.random.uniform instead.
+
+2019-12-30 09:36:36,937 - From /usr/local/lib/python3.6/dist-packages/keras/optimizers.py:793: The name tf.train.Optimizer is deprecated. Please use tf.compat.v1.train.Optimizer instead.
+
+2019-12-30 09:36:36,960 - From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:3576: The name tf.log is deprecated. Please use tf.math.log instead.
+
+2019-12-30 09:36:37,156 - Train Model
+2019-12-30 09:36:37,156 - ###########
+
+
+2019-12-30 09:36:37,156 - Model: "model_1"
+2019-12-30 09:36:37,157 - __________________________________________________________________________________________________
+2019-12-30 09:36:37,157 - Layer (type)                    Output Shape         Param #     Connected to                     
+2019-12-30 09:36:37,157 - ==================================================================================================
+2019-12-30 09:36:37,157 - encoder_input (InputLayer)      (None, None, 27)     0                                            
+2019-12-30 09:36:37,157 - __________________________________________________________________________________________________
+2019-12-30 09:36:37,157 - decoder_input (InputLayer)      (None, None, 28)     0                                            
+2019-12-30 09:36:37,158 - __________________________________________________________________________________________________
+2019-12-30 09:36:37,158 - encoder_lstm (LSTM)             [(None, 192), (None, 168960      encoder_input[0][0]              
+2019-12-30 09:36:37,158 - __________________________________________________________________________________________________
+2019-12-30 09:36:37,159 - decoder_lstm (LSTM)             [(None, None, 192),  169728      decoder_input[0][0]              
+2019-12-30 09:36:37,159 -                                                                  encoder_lstm[0][1]               
+2019-12-30 09:36:37,159 -                                                                  encoder_lstm[0][2]               
+2019-12-30 09:36:37,159 - __________________________________________________________________________________________________
+2019-12-30 09:36:37,159 - decoder_dense (Dense)           (None, None, 28)     5404        decoder_lstm[0][0]               
+2019-12-30 09:36:37,160 - ==================================================================================================
+2019-12-30 09:36:37,160 - Total params: 344,092
+2019-12-30 09:36:37,160 - Trainable params: 344,092
+2019-12-30 09:36:37,160 - Non-trainable params: 0
+2019-12-30 09:36:37,161 - __________________________________________________________________________________________________
+2019-12-30 09:36:37,161 - Inference Encoder Model
+2019-12-30 09:36:37,162 - #######################
+
+
+2019-12-30 09:36:37,162 - Model: "inference_encoder"
+2019-12-30 09:36:37,162 - _________________________________________________________________
+2019-12-30 09:36:37,162 - Layer (type)                 Output Shape              Param #   
+2019-12-30 09:36:37,163 - =================================================================
+2019-12-30 09:36:37,163 - encoder_input (InputLayer)   (None, None, 27)          0         
+2019-12-30 09:36:37,163 - _________________________________________________________________
+2019-12-30 09:36:37,164 - encoder_lstm (LSTM)          [(None, 192), (None, 192) 168960    
+2019-12-30 09:36:37,164 - =================================================================
+2019-12-30 09:36:37,165 - Total params: 168,960
+2019-12-30 09:36:37,165 - Trainable params: 168,960
+2019-12-30 09:36:37,165 - Non-trainable params: 0
+2019-12-30 09:36:37,166 - _________________________________________________________________
+2019-12-30 09:36:37,166 - Inference Decoder Model
+2019-12-30 09:36:37,166 - #######################
+
+
+2019-12-30 09:36:37,166 - Model: "model_2"
+2019-12-30 09:36:37,166 - __________________________________________________________________________________________________
+2019-12-30 09:36:37,167 - Layer (type)                    Output Shape         Param #     Connected to                     
+2019-12-30 09:36:37,167 - ==================================================================================================
+2019-12-30 09:36:37,167 - decoder_input (InputLayer)      (None, None, 28)     0                                            
+2019-12-30 09:36:37,167 - __________________________________________________________________________________________________
+2019-12-30 09:36:37,167 - inference_decoder_state_input_h (None, 192)          0                                            
+2019-12-30 09:36:37,168 - __________________________________________________________________________________________________
+2019-12-30 09:36:37,168 - inference_decoder_state_input_c (None, 192)          0                                            
+2019-12-30 09:36:37,168 - __________________________________________________________________________________________________
+2019-12-30 09:36:37,168 - decoder_lstm (LSTM)             [(None, None, 192),  169728      decoder_input[0][0]              
+2019-12-30 09:36:37,169 -                                                                  inference_decoder_state_input_h[0
+2019-12-30 09:36:37,169 -                                                                  inference_decoder_state_input_c[0
+2019-12-30 09:36:37,169 - __________________________________________________________________________________________________
+2019-12-30 09:36:37,169 - decoder_dense (Dense)           (None, None, 28)     5404        decoder_lstm[1][0]               
+2019-12-30 09:36:37,169 - ==================================================================================================
+2019-12-30 09:36:37,169 - Total params: 175,132
+2019-12-30 09:36:37,170 - Trainable params: 175,132
+2019-12-30 09:36:37,170 - Non-trainable params: 0
+2019-12-30 09:36:37,170 - __________________________________________________________________________________________________
+2019-12-30 09:36:37,170 - Starting Training . . .
+
+
+2019-12-30 09:36:37,285 - From /usr/local/lib/python3.6/dist-packages/tensorflow_core/python/ops/math_grad.py:1424: where (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+2019-12-30 09:36:38,339 - From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:1033: The name tf.assign_add is deprecated. Please use tf.compat.v1.assign_add instead.
+
+2019-12-30 09:36:38,345 - From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:1020: The name tf.assign is deprecated. Please use tf.compat.v1.assign instead.
+
+2019-12-30 09:36:38,474 - From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:3005: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+2019-12-30 09:36:38,477 - From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:190: The name tf.get_default_session is deprecated. Please use tf.compat.v1.get_default_session instead.
+
+2019-12-30 09:36:38,478 - From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:197: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+2019-12-30 09:36:39,920 - From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:207: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
+
+2019-12-30 09:36:39,921 - From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:216: The name tf.is_variable_initialized is deprecated. Please use tf.compat.v1.is_variable_initialized instead.
+
+2019-12-30 09:36:40,105 - From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:223: The name tf.variables_initializer is deprecated. Please use tf.compat.v1.variables_initializer instead.
+
+2019-12-30 09:36:55,106 - Epoch: 1 Accuracy: 0.417 Loss: 2.185 Time: 17.935s 
+2019-12-30 09:36:55,486 - Input sequence:	s x a g z j b r c c v q t
+2019-12-30 09:36:55,487 - Dcded sequence:	v v j j a a b b
+
+2019-12-30 09:36:55,849 - Input sequence:	i u u l s s z n x
+2019-12-30 09:36:55,849 - Dcded sequence:	a a a b
+
+2019-12-30 09:37:02,051 - Epoch: 2 Accuracy: 0.428 Loss: 2.047 Time: 6.202s 
+2019-12-30 09:37:08,318 - Epoch: 3 Accuracy: 0.432 Loss: 2.024 Time: 6.266s 
+2019-12-30 09:37:14,502 - Epoch: 4 Accuracy: 0.436 Loss: 2.009 Time: 6.183s 
+2019-12-30 09:37:20,702 - Epoch: 5 Accuracy: 0.438 Loss: 1.997 Time: 6.199s 
+2019-12-30 09:37:26,918 - Epoch: 6 Accuracy: 0.442 Loss: 1.988 Time: 6.216s 
+2019-12-30 09:37:27,317 - Input sequence:	k f d u f w w s n r v
+2019-12-30 09:37:27,317 - Dcded sequence:	k k k k i p i i x t
+
+2019-12-30 09:37:27,719 - Input sequence:	x i x x k l a o f i l k y
+2019-12-30 09:37:27,719 - Dcded sequence:	k k k k k i i d d x z z
+
+2019-12-30 09:37:33,943 - Epoch: 7 Accuracy: 0.448 Loss: 1.968 Time: 6.224s 
+2019-12-30 09:37:40,194 - Epoch: 8 Accuracy: 0.456 Loss: 1.921 Time: 6.25s 
+2019-12-30 09:37:46,412 - Epoch: 9 Accuracy: 0.473 Loss: 1.847 Time: 6.217s 
+2019-12-30 09:37:52,691 - Epoch: 10 Accuracy: 0.491 Loss: 1.766 Time: 6.278s 
+2019-12-30 09:37:58,895 - Epoch: 11 Accuracy: 0.512 Loss: 1.645 Time: 6.204s 
+2019-12-30 09:37:59,315 - Input sequence:	f q b n k m z i u j q q n d n
+2019-12-30 09:37:59,316 - Dcded sequence:	n n q q b q n q n b q j q n
+
+2019-12-30 09:37:59,868 - Input sequence:	y d y n v c f
+2019-12-30 09:37:59,868 - Dcded sequence:	n n n n y n
+
+2019-12-30 09:38:06,177 - Epoch: 12 Accuracy: 0.536 Loss: 1.535 Time: 6.309s 
+2019-12-30 09:38:12,468 - Epoch: 13 Accuracy: 0.568 Loss: 1.409 Time: 6.291s 
+2019-12-30 09:38:18,742 - Epoch: 14 Accuracy: 0.6 Loss: 1.287 Time: 6.273s 
+2019-12-30 09:38:25,092 - Epoch: 15 Accuracy: 0.631 Loss: 1.173 Time: 6.35s 
+2019-12-30 09:38:31,308 - Epoch: 16 Accuracy: 0.658 Loss: 1.076 Time: 6.215s 
+2019-12-30 09:38:31,754 - Input sequence:	e k z j k m u c
+2019-12-30 09:38:31,754 - Dcded sequence:	m j h k u v k j
+
+2019-12-30 09:38:32,195 - Input sequence:	v q z h v
+2019-12-30 09:38:32,195 - Dcded sequence:	v h q v j
+
+2019-12-30 09:38:38,489 - Epoch: 17 Accuracy: 0.687 Loss: 0.973 Time: 6.293s 
+2019-12-30 09:38:44,780 - Epoch: 18 Accuracy: 0.714 Loss: 0.889 Time: 6.29s 
+2019-12-30 09:38:51,001 - Epoch: 19 Accuracy: 0.742 Loss: 0.802 Time: 6.221s 
+2019-12-30 09:38:57,250 - Epoch: 20 Accuracy: 0.769 Loss: 0.712 Time: 6.248s 
+2019-12-30 09:39:03,558 - Epoch: 21 Accuracy: 0.788 Loss: 0.661 Time: 6.308s 
+2019-12-30 09:39:04,045 - Input sequence:	d k l v t k d c s f f o p w p
+2019-12-30 09:39:04,046 - Dcded sequence:	p f w p o f s c t d k v a b l
+
+2019-12-30 09:39:04,517 - Input sequence:	z g w b z t a z h o h
+2019-12-30 09:39:04,518 - Dcded sequence:	h o h z a t z f g b q
+
+2019-12-30 09:39:11,009 - Epoch: 22 Accuracy: 0.814 Loss: 0.574 Time: 6.491s 
+2019-12-30 09:39:17,300 - Epoch: 23 Accuracy: 0.828 Loss: 0.531 Time: 6.29s 
+2019-12-30 09:39:23,529 - Epoch: 24 Accuracy: 0.841 Loss: 0.496 Time: 6.229s 
+2019-12-30 09:39:29,691 - Epoch: 25 Accuracy: 0.857 Loss: 0.443 Time: 6.161s 
+2019-12-30 09:39:35,871 - Epoch: 26 Accuracy: 0.869 Loss: 0.418 Time: 6.18s 
+2019-12-30 09:39:36,341 - Input sequence:	o f a s m j a x r i
+2019-12-30 09:39:36,341 - Dcded sequence:	i r x a j s a o g s
+
+2019-12-30 09:39:36,834 - Input sequence:	s c g f v e k d w o b c m w k
+2019-12-30 09:39:36,834 - Dcded sequence:	k c w m o b d w e v f k d c s
+
+2019-12-30 09:39:43,080 - Epoch: 27 Accuracy: 0.882 Loss: 0.37 Time: 6.245s 
+2019-12-30 09:39:49,409 - Epoch: 28 Accuracy: 0.89 Loss: 0.353 Time: 6.328s 
+2019-12-30 09:39:55,660 - Epoch: 29 Accuracy: 0.901 Loss: 0.314 Time: 6.25s 
+2019-12-30 09:40:01,906 - Epoch: 30 Accuracy: 0.908 Loss: 0.3 Time: 6.245s 
+2019-12-30 09:40:08,113 - Epoch: 31 Accuracy: 0.915 Loss: 0.272 Time: 6.207s 
+2019-12-30 09:40:08,630 - Input sequence:	v h c a c n t e p s i n q p v
+2019-12-30 09:40:08,631 - Dcded sequence:	v q p n i p m t z k n u c c h
+
+2019-12-30 09:40:09,128 - Input sequence:	e x m m g h z h a
+2019-12-30 09:40:09,128 - Dcded sequence:	a h z h m g m x e
+
+2019-12-30 09:40:15,351 - Epoch: 32 Accuracy: 0.922 Loss: 0.261 Time: 6.222s 
+2019-12-30 09:40:21,606 - Epoch: 33 Accuracy: 0.929 Loss: 0.231 Time: 6.255s 
+2019-12-30 09:40:27,891 - Epoch: 34 Accuracy: 0.932 Loss: 0.231 Time: 6.285s 
+2019-12-30 09:40:34,153 - Epoch: 35 Accuracy: 0.938 Loss: 0.205 Time: 6.261s 
+2019-12-30 09:40:40,355 - Epoch: 36 Accuracy: 0.941 Loss: 0.203 Time: 6.202s 
+2019-12-30 09:40:40,856 - Input sequence:	h h u m q z t u z v o
+2019-12-30 09:40:40,856 - Dcded sequence:	o v z z x g m n h h q
+
+2019-12-30 09:40:41,373 - Input sequence:	a c t i p v
+2019-12-30 09:40:41,373 - Dcded sequence:	v p i t c r
+
+2019-12-30 09:40:47,592 - Epoch: 37 Accuracy: 0.945 Loss: 0.183 Time: 6.218s 
+2019-12-30 09:40:53,900 - Epoch: 38 Accuracy: 0.947 Loss: 0.176 Time: 6.308s 
+2019-12-30 09:41:00,042 - Epoch: 39 Accuracy: 0.95 Loss: 0.183 Time: 6.142s 
+2019-12-30 09:41:06,230 - Epoch: 40 Accuracy: 0.95 Loss: 0.173 Time: 6.187s 
+2019-12-30 09:41:12,393 - Epoch: 41 Accuracy: 0.96 Loss: 0.137 Time: 6.162s 
+2019-12-30 09:41:12,917 - Input sequence:	m r r f i
+2019-12-30 09:41:12,917 - Dcded sequence:	i f r r m
+
+2019-12-30 09:41:13,461 - Input sequence:	f p o q n d z q t l l l t c g
+2019-12-30 09:41:13,462 - Dcded sequence:	g c l t l t l q z m q b w t o
+
+2019-12-30 09:41:19,654 - Epoch: 42 Accuracy: 0.958 Loss: 0.143 Time: 6.192s 
+2019-12-30 09:41:25,842 - Epoch: 43 Accuracy: 0.96 Loss: 0.136 Time: 6.188s 
+2019-12-30 09:41:31,983 - Epoch: 44 Accuracy: 0.961 Loss: 0.144 Time: 6.141s 
+2019-12-30 09:41:38,210 - Epoch: 45 Accuracy: 0.964 Loss: 0.123 Time: 6.226s 
+2019-12-30 09:41:44,402 - Epoch: 46 Accuracy: 0.965 Loss: 0.121 Time: 6.192s 
+2019-12-30 09:41:44,965 - Input sequence:	i e p x v d v w w s v r
+2019-12-30 09:41:44,965 - Dcded sequence:	r v s w w v d v x p e i
+
+2019-12-30 09:41:45,514 - Input sequence:	r s c d k r
+2019-12-30 09:41:45,515 - Dcded sequence:	r k d c s r
+
+2019-12-30 09:41:51,802 - Epoch: 47 Accuracy: 0.968 Loss: 0.112 Time: 6.287s 
+2019-12-30 09:41:58,057 - Epoch: 48 Accuracy: 0.97 Loss: 0.119 Time: 6.254s 
+2019-12-30 09:42:04,253 - Epoch: 49 Accuracy: 0.971 Loss: 0.102 Time: 6.196s 
+2019-12-30 09:42:10,457 - Epoch: 50 Accuracy: 0.965 Loss: 0.127 Time: 6.204s 
+2019-12-30 09:42:16,651 - Epoch: 51 Accuracy: 0.978 Loss: 0.081 Time: 6.194s 
+2019-12-30 09:42:17,224 - Input sequence:	e t i z c u j t i v y
+2019-12-30 09:42:17,224 - Dcded sequence:	y v i t j u c z i t e
+
+2019-12-30 09:42:17,772 - Input sequence:	n g m k o n d z b m
+2019-12-30 09:42:17,772 - Dcded sequence:	m b z d n o k m u o
+
+2019-12-30 09:42:24,035 - Epoch: 52 Accuracy: 0.973 Loss: 0.093 Time: 6.263s 
+2019-12-30 09:42:30,150 - Epoch: 53 Accuracy: 0.974 Loss: 0.093 Time: 6.115s 
+2019-12-30 09:42:36,355 - Epoch: 54 Accuracy: 0.977 Loss: 0.094 Time: 6.205s 
+2019-12-30 09:42:42,411 - Epoch: 55 Accuracy: 0.977 Loss: 0.083 Time: 6.056s 
+2019-12-30 09:42:48,528 - Epoch: 56 Accuracy: 0.977 Loss: 0.081 Time: 6.116s 
+2019-12-30 09:42:49,107 - Input sequence:	q x g b w p f w l
+2019-12-30 09:42:49,107 - Dcded sequence:	l w f p w b g x q
+
+2019-12-30 09:42:49,693 - Input sequence:	f u l g x q t
+2019-12-30 09:42:49,694 - Dcded sequence:	t q x g l u f
+
+2019-12-30 09:42:55,887 - Epoch: 57 Accuracy: 0.978 Loss: 0.078 Time: 6.193s 
+2019-12-30 09:43:02,043 - Epoch: 58 Accuracy: 0.979 Loss: 0.075 Time: 6.156s 
+2019-12-30 09:43:08,284 - Epoch: 59 Accuracy: 0.975 Loss: 0.1 Time: 6.24s 
+2019-12-30 09:43:14,421 - Epoch: 60 Accuracy: 0.986 Loss: 0.055 Time: 6.137s 
+2019-12-30 09:43:20,478 - Epoch: 61 Accuracy: 0.981 Loss: 0.068 Time: 6.056s 
+2019-12-30 09:43:21,074 - Input sequence:	p h j n s d a t h d u k n g
+2019-12-30 09:43:21,075 - Dcded sequence:	g n k u h d t a d s n w h b
+
+2019-12-30 09:43:21,695 - Input sequence:	p h i b t y w g
+2019-12-30 09:43:21,695 - Dcded sequence:	g w y t b i h p
+
+2019-12-30 09:43:27,902 - Epoch: 62 Accuracy: 0.983 Loss: 0.063 Time: 6.207s 
+2019-12-30 09:43:34,098 - Epoch: 63 Accuracy: 0.981 Loss: 0.08 Time: 6.196s 
+2019-12-30 09:43:40,191 - Epoch: 64 Accuracy: 0.984 Loss: 0.06 Time: 6.092s 
+2019-12-30 09:43:46,312 - Epoch: 65 Accuracy: 0.984 Loss: 0.059 Time: 6.121s 
+2019-12-30 09:43:52,413 - Epoch: 66 Accuracy: 0.984 Loss: 0.057 Time: 6.1s 
+2019-12-30 09:43:53,071 - Input sequence:	n i h n h v q f j f r y a m d
+2019-12-30 09:43:53,072 - Dcded sequence:	d m r a y f j f q v h i n t h l
+
+2019-12-30 09:43:53,715 - Input sequence:	s n m b d
+2019-12-30 09:43:53,716 - Dcded sequence:	d b m n s
+
+2019-12-30 09:44:00,011 - Epoch: 67 Accuracy: 0.985 Loss: 0.056 Time: 6.295s 
+2019-12-30 09:44:06,143 - Epoch: 68 Accuracy: 0.984 Loss: 0.07 Time: 6.132s 
+2019-12-30 09:44:12,155 - Epoch: 69 Accuracy: 0.987 Loss: 0.05 Time: 6.012s 
+2019-12-30 09:44:18,378 - Epoch: 70 Accuracy: 0.985 Loss: 0.063 Time: 6.222s 
+2019-12-30 09:44:24,628 - Epoch: 71 Accuracy: 0.987 Loss: 0.048 Time: 6.25s 
+2019-12-30 09:44:25,268 - Input sequence:	n a u m w v k e b l
+2019-12-30 09:44:25,268 - Dcded sequence:	l b e k v g w m n a
+
+2019-12-30 09:44:25,899 - Input sequence:	b t w b e u y z a
+2019-12-30 09:44:25,899 - Dcded sequence:	a z y u e b w t b
+
+2019-12-30 09:44:32,068 - Epoch: 72 Accuracy: 0.987 Loss: 0.049 Time: 6.169s 
+2019-12-30 09:44:38,223 - Epoch: 73 Accuracy: 0.988 Loss: 0.046 Time: 6.153s 
+2019-12-30 09:44:44,295 - Epoch: 74 Accuracy: 0.988 Loss: 0.055 Time: 6.07s 
+2019-12-30 09:44:50,340 - Epoch: 75 Accuracy: 0.99 Loss: 0.04 Time: 6.044s 
+2019-12-30 09:44:56,478 - Epoch: 76 Accuracy: 0.984 Loss: 0.065 Time: 6.138s 
+2019-12-30 09:44:57,133 - Input sequence:	y s m s u
+2019-12-30 09:44:57,133 - Dcded sequence:	u s m s y
+
+2019-12-30 09:44:57,802 - Input sequence:	e k w p o
+2019-12-30 09:44:57,803 - Dcded sequence:	o p w k e
+
+2019-12-30 09:45:03,823 - Epoch: 77 Accuracy: 0.993 Loss: 0.032 Time: 6.02s 
+2019-12-30 09:45:09,951 - Epoch: 78 Accuracy: 0.99 Loss: 0.041 Time: 6.128s 
+2019-12-30 09:45:16,027 - Epoch: 79 Accuracy: 0.991 Loss: 0.038 Time: 6.075s 
+2019-12-30 09:45:22,093 - Epoch: 80 Accuracy: 0.987 Loss: 0.053 Time: 6.066s 
+2019-12-30 09:45:28,201 - Epoch: 81 Accuracy: 0.99 Loss: 0.042 Time: 6.108s 
+2019-12-30 09:45:28,882 - Input sequence:	v g b n p d s f w f e n w o a
+2019-12-30 09:45:28,882 - Dcded sequence:	a o w n e f w f s w p l b j g h
+
+2019-12-30 09:45:29,554 - Input sequence:	k g r g t k o
+2019-12-30 09:45:29,554 - Dcded sequence:	o k t g r s i
+
+2019-12-30 09:45:35,652 - Epoch: 82 Accuracy: 0.993 Loss: 0.032 Time: 6.098s 
+2019-12-30 09:45:41,701 - Epoch: 83 Accuracy: 0.991 Loss: 0.035 Time: 6.048s 
+2019-12-30 09:45:47,775 - Epoch: 84 Accuracy: 0.985 Loss: 0.063 Time: 6.073s 
+2019-12-30 09:45:53,913 - Epoch: 85 Accuracy: 0.995 Loss: 0.026 Time: 6.137s 
+2019-12-30 09:46:00,058 - Epoch: 86 Accuracy: 0.992 Loss: 0.031 Time: 6.145s 
+2019-12-30 09:46:00,766 - Input sequence:	l p c i q k t n g f v x p z
+2019-12-30 09:46:00,766 - Dcded sequence:	z p x v f g n t k q i c p l
+
+2019-12-30 09:46:01,474 - Input sequence:	w p m f g z w p z d s e z t a
+2019-12-30 09:46:01,474 - Dcded sequence:	a t z e s d z p w z g f m p u w
+
+2019-12-30 09:46:07,590 - Epoch: 87 Accuracy: 0.992 Loss: 0.032 Time: 6.116s 
+2019-12-30 09:46:13,668 - Epoch: 88 Accuracy: 0.993 Loss: 0.031 Time: 6.077s 
+2019-12-30 09:46:19,751 - Epoch: 89 Accuracy: 0.992 Loss: 0.031 Time: 6.082s 
+2019-12-30 09:46:25,877 - Epoch: 90 Accuracy: 0.993 Loss: 0.028 Time: 6.126s 
+2019-12-30 09:46:31,983 - Epoch: 91 Accuracy: 0.988 Loss: 0.058 Time: 6.105s 
+2019-12-30 09:46:32,719 - Input sequence:	l a j t r v t
+2019-12-30 09:46:32,719 - Dcded sequence:	t v r t j a l
+
+2019-12-30 09:46:33,436 - Input sequence:	y b m v c
+2019-12-30 09:46:33,436 - Dcded sequence:	c v m b y
+
+2019-12-30 09:46:39,512 - Epoch: 92 Accuracy: 0.992 Loss: 0.031 Time: 6.075s 
+2019-12-30 09:46:45,587 - Epoch: 93 Accuracy: 0.994 Loss: 0.028 Time: 6.074s 
+2019-12-30 09:46:51,636 - Epoch: 94 Accuracy: 0.994 Loss: 0.025 Time: 6.049s 
+2019-12-30 09:46:57,734 - Epoch: 95 Accuracy: 0.992 Loss: 0.031 Time: 6.097s 
+2019-12-30 09:47:03,840 - Epoch: 96 Accuracy: 0.992 Loss: 0.04 Time: 6.105s 
+2019-12-30 09:47:04,576 - Input sequence:	h b x n f m
+2019-12-30 09:47:04,576 - Dcded sequence:	m f n x b h
+
+2019-12-30 09:47:05,381 - Input sequence:	v w g z p u c
+2019-12-30 09:47:05,382 - Dcded sequence:	c u p z g w v
+
+2019-12-30 09:47:11,561 - Epoch: 97 Accuracy: 0.994 Loss: 0.026 Time: 6.179s 
+2019-12-30 09:47:17,681 - Epoch: 98 Accuracy: 0.994 Loss: 0.026 Time: 6.12s 
+2019-12-30 09:47:23,829 - Epoch: 99 Accuracy: 0.995 Loss: 0.022 Time: 6.147s 
+2019-12-30 09:47:29,878 - Epoch: 100 Accuracy: 0.991 Loss: 0.039 Time: 6.049s 
+2019-12-30 09:47:29,878 - Total train time: 629.9515438079834 seconds
+
+2019-12-30 09:47:29,894 - Saving models to ./objects/*_big.h5
+
+2019-12-30 09:47:30,763 - Saving train history to ./objects/history.pickle
+
+2019-12-30 09:47:30,781 - Saving character mapping dictionaries to ./objects/char_map_big.pickle
+
+2019-12-30 09:47:30,781 - Finished.
+2019-12-30 09:52:34,049 - Saving models to ./objects/*_big.h5
+
+2019-12-30 09:52:34,096 - Saving train history to ./objects/history.pickle
+
+2019-12-30 09:52:34,110 - Saving character mapping dictionaries to ./objects/char_map_big.pickle
+
+2019-12-30 09:52:34,110 - Finished.

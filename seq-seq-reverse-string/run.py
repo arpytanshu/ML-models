@@ -11,26 +11,25 @@ import numpy as np
 from keras.models import load_model
 from tensorflow import convert_to_tensor
 
-inference_encoder_path = './objects/inf_encoder_small.h5'
-inference_decoder_path = './objects/inf_decoder_small.h5'
-character_map_path = './objects/char_map_small.pickle'
+inference_encoder_path = './objects/inf_encoder_big.h5'
+inference_decoder_path = './objects/inf_decoder_big.h5'
+character_map_path = './objects/char_map_big.pickle'
 
 with open(character_map_path, 'rb') as f:
     char_map = pickle.load(f)
 
 source_index_token = char_map['source_index_token']
 target_index_token = char_map['target_index_token']
+num_source_tokens = char_map['num_source_tokens']
+num_target_tokens = char_map['num_target_tokens']
+max_source_seq_len = char_map['max_source_seq_len']
+max_target_seq_len = char_map['max_target_seq_len']
+
 
 source_token_index = dict([(tkn, ix) for ix,tkn in source_index_token.items()])
 # index => token mapping for target text
 target_token_index = dict([(tkn, ix) for ix,tkn in target_index_token.items()])
 
-num_source_tokens = source_index_token.__len__()
-num_target_tokens = target_index_token.__len__()
-
-
-max_source_seq_len = 15 + 1 # '\n' character
-max_target_seq_len = 15 + 2 # '\n' & '\t' character
 
 
 inf_encoder_model = load_model(inference_encoder_path)
@@ -63,9 +62,9 @@ def inference(input_sequence):
     return decoded_sequence
 
 
-def run_small(text):
-    if(len(text) > 7):
-        print('Model was built for text length <= 7. Try a shorter string.')
+def run_big(text):
+    if(len(text) > max_target_seq_len - 2):
+        print('Model was built for text length <= {}. Try a shorter string.'.format(max_target_seq_len - 2))
         return False
     input_text = text + '\n'
     input_seq = np.zeros((1,max_source_seq_len,num_source_tokens))
