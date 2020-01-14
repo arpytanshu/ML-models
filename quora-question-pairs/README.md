@@ -3,9 +3,9 @@ Kaggle Dataset Link: (https://www.kaggle.com/c/quora-question-pairs)
 
 
 #### Dataset snippet
-![data-ss](quora-question-pairs/data_ss.png)  
+![data-ss](https://github.com/arpytanshu/ML-models/blob/master/quora-question-pairs/data_ss.png)  
 
 
 ### Model
-![ref_image](quora-question-pairs/model.png)
+![ref_image](https://github.com/arpytanshu/ML-models/blob/master/quora-question-pairs/model.png)
   
