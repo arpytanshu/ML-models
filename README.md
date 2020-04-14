@@ -1,6 +1,9 @@
 ## ML-models
 ### Table of Contents
 
+* [**hackerearth-tag-gala-images**](hackerearth-tag-gala-images)  
+  Image Classification PyTorch model. For hackerearth hackathon.  
+
 * [**seq-seq-reverse-string**](seq-seq-reverse-string)  
   A seq-2-seq NMT model that learns to reverse a string.  
   ```abcd1234 ==> 4321dcba```
